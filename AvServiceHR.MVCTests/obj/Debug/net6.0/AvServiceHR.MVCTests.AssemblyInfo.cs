@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AvServiceHR.MVCTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e49d49aaf2c2242bf2eb7e23b7bd3a39672176a9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a5588b64e63b17111c3328700e25609ec3cef0a")]
 [assembly: System.Reflection.AssemblyProductAttribute("AvServiceHR.MVCTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AvServiceHR.MVCTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

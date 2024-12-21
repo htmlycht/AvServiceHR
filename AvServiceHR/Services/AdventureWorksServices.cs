@@ -44,10 +44,15 @@ namespace AvServiceHR.Services
             var connection = new SqlConnection(connectionString);
 
             string sqlSelect = $@"  
-                             --- paste query here ----
+                             SELECT p.ProductID, p.Name, p.ProductNumber, l.Name AS LocationName, SUM(s.Quantity) AS Quantity
+                             FROM Production.Product p
+                             JOIN Production.TransactionHistory s ON p.ProductID = s.ProductID
+                             JOIN Production.Location l ON s.LocationID = l.LocationID
+                             WHERE s.Quantity > 100 AND s.LocationID = @LocationID
+                             GROUP BY p.ProductID, p.Name, p.ProductNumber, l.Name
                            ";
-            var preGiorn = (await connection.QueryAsync<ProductIdMiniInfo>(sqlSelect, commandTimeout: 500)).ToList();
-            throw new NotImplementedException();
+            var preGiorn = (await connection.QueryAsync<ProductIdMiniInfo>(sqlSelect, new { LocationID = locationId })).ToList();
+            return preGiorn;
 
         }
 
@@ -58,16 +63,21 @@ namespace AvServiceHR.Services
         /// </summary>
         /// 
         /// <returns></returns>
-        public async Task<List<ProductIdMiniInfo>> GetProductsQtyLocationId(int locationID)
+        public async Task<List<ProductIdMiniInfo>> GetProductsQtyLocationId(int locationId)
         {
 
             var connection = new SqlConnection(connectionString);
 
             string sqlSelect = $@"  
-                           --- paste query here ----
+                           SELECT p.ProductID, p.Name, p.ProductNumber, l.Name AS LocationName, SUM(s.Quantity) AS Quantity
+                           FROM Production.Product p
+                           JOIN Production.TransactionHistory s ON p.ProductID = s.ProductID
+                           JOIN Production.Location l ON s.LocationID = l.LocationID
+                           WHERE s.LocationID = @LocationID
+                           GROUP BY p.ProductID, p.Name, p.ProductNumber, l.Name
                            ";
-            var preGiorn = (await connection.QueryAsync<ProductIdMiniInfo>(sqlSelect, commandTimeout: 500)).ToList();
-            throw new NotImplementedException();
+            var preGiorn = (await connection.QueryAsync<ProductIdMiniInfo>(sqlSelect, new { LocationID = locationId })).ToList();
+            return preGiorn;
 
         }
 
@@ -76,11 +86,14 @@ namespace AvServiceHR.Services
         /// IMPLEMENTARE CON EF
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Person>> SearchPerson(string firstName, string LastName)
+        public async Task<List<Person>> SearchPerson(string firstName, string lastName)
         {
             //_advContext db context
 
-            throw new NotImplementedException();
+            // LINQ
+            return await _advContext.Person
+                .Where(p => p.FirstName.Contains(firstName) && p.LastName.Contains(lastName))
+                .ToListAsync();
 
         }
 
@@ -101,15 +114,11 @@ namespace AvServiceHR.Services
         /// <returns></returns>
         public async Task<List<Person>> GetPersonFilter(string nome, string cognome)
         {
-            throw new NotImplementedException();
+            return await _advContext.Person
+                .Where(p => p.FirstName.Equals(nome) && p.LastName.Equals(cognome))
+                .ToListAsync();
 
         }
-
-
-
-
-
-
 
     }
 }

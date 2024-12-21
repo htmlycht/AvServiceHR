@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "qXBkakDGzxudQWpZj3HtnGeHzygfpvVWiBmmPG6wCxk=",
+  "Source": "AvServiceHR.API",
+  "BasePath": "_content/AvServiceHR.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
