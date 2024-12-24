@@ -69,7 +69,7 @@ namespace AvServiceHR.API.Controllers
 
         // PUT api/<PersonController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string name)
+        public void Put(int id, [FromBody] string name) // aggiorno entity passando la stringa del nome
         {
             var person = _context.Person.FirstOrDefault(p => p.BusinessEntityId == id);
             if (person != null)

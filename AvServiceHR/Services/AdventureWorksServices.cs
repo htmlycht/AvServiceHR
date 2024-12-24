@@ -38,6 +38,10 @@ namespace AvServiceHR.Services
 
         /// </summary>
         /// <returns></returns>
+        /// /*
+        /// Production.Product contiene i prodotti, join con Production.TransactionHistory, che tiene traccia delle 
+        /// transazioni sui prodottie join su Production.Location per ottenere il nome della location. In questa maniera
+        /// si riesce a produrrer un oggetto di tipo ProductIdMiniInfo
         public async Task<List<ProductIdMiniInfo>> GetProductsQtyMaggioreDi100(int locationId)
         {
             
@@ -60,6 +64,7 @@ namespace AvServiceHR.Services
         /// IMPLEMENTARE CON DAPPER
         /// <summary>
         /// Restituisce tutti i prodotti di quella  determinata locationId
+        /// come la query sopra ma non c'è il vincolo di quantity
         /// </summary>
         /// 
         /// <returns></returns>
